@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Array Values</title>
+</head>
+<body>
+  <h1>Add Array Values</h1>
+  <form id="addForm">
+    <label for="index1">Index 1:</label>
+    <input type="text" id="index1" name="index1"><br><br>
+    <label for="index2">Index 2:</label>
+    <input type="text" id="index2" name="index2"><br><br>
+    <label for="index3">Index 3:</label>
+    <input type="text" id="index3" name="index3"><br><br>
+    <label for="index3">Result:</label>
+    <input type="text" id="result" name="result" readonly><br><br>
+    <input type="submit" value="Add">
+  </form>
+
+  <script>
+    const addForm = document.getElementById('addForm');
+    addForm.addEventListener('submit', (event) => {
+      event.preventDefault(); 
+      const index1 = document.getElementById('index1').value;
+      const index2 = document.getElementById('index2').value;
+      const index3 = document.getElementById('index3').value;
+      fetch(`/add/${index1}/${index2}/${index3}`)
+        .then(response => response.text())
+        .catch(error => {
+          console.error(error);
+        });
+    });
+  </script>
+</body>
+</html>
